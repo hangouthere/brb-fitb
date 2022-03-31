@@ -1,8 +1,8 @@
 version: '3.7'
 
 services:
-  new-project:
-    image: nfg/new-project:latest
+  nfgoverlay-fitb:
+    image: nfg/nfgoverlay-fitb:latest
     build:
       context: .
       dockerfile: ./Dockerfile

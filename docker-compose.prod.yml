@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  new-project:
+  nfgoverlay-fitb:
     build:
       target: production
     environment:

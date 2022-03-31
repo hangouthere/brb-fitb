@@ -10,7 +10,10 @@ docker-compose -f ./docker-compose.yml -f ./docker-compose.dev.yml up
 
 docker-compose -f ./docker-compose.yml -f ./docker-compose.prod.yml up
 
+## TODO:
 
+* Clean up docker-compose envs
+  * needs to be generally consistent
 
 ## Concept
 

@@ -1,33 +1,29 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { type NormalizedEntry } from './utils';
+import { type NormalizedEntry } from '../utils';
 
-type EntryDisplayProps = {
-  category: string;
+type BlankTupleBase = {
   chosenBlank: NormalizedEntry;
+  refBlank?: React.RefObject<HTMLElement>;
+};
+
+type BuildOptionsBase = BlankTupleBase & {
   isAnswered: boolean;
   isTimeUp: boolean;
   letterDelay: number;
+};
+
+type BuildDumpOptions = BuildOptionsBase & {
   normalizedEntryList: NormalizedEntry[];
 };
 
-type BuildDumpOptions = {
-  chosenBlank: NormalizedEntry;
-  isAnswered: boolean;
-  isTimeUp: boolean;
-  letterDelay: number;
-  normalizedEntryList: NormalizedEntry[];
-  refBlank: React.RefObject<HTMLElement>;
-};
-
-type EntryBuilderOptions = {
-  chosenBlank: NormalizedEntry | undefined;
+type EntryBuilderOptions = BuildOptionsBase & {
   entry: NormalizedEntry;
   entryIdx: number;
-  isAnswered: boolean;
-  isTimeUp: boolean;
-  letterDelay: number;
-  refBlank?: React.RefObject<HTMLElement>;
   totalLettersBuilt: number;
+};
+
+type EntryDisplayProps = BuildDumpOptions & {
+  category: string;
 };
 
 const buildEntryDump = ({
@@ -48,7 +44,7 @@ const buildEntryDump = ({
   const letters = entry.word.split('').map((letter, ltrIdx) => (
     <span
       className="letter"
-      key={++numLettersBuilt}
+      key={letter + ++numLettersBuilt}
       style={{
         animationDelay: isChosen
           ? `${numLettersBuilt * letterDelay}ms`
@@ -67,7 +63,7 @@ const buildEntryDump = ({
     numLettersBuilt: isChosen ? 1 : numLettersBuilt,
     wordDump: (
       <span
-        key={entryIdx}
+        key={entry.word + entryIdx}
         ref={isChosen ? refBlank : null}
         className={className}
         style={{

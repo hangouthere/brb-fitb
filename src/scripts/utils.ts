@@ -1,3 +1,4 @@
+import { useReducer } from 'react';
 // @ts-ignore
 import { eng, removeStopwords, _123 } from 'stopword';
 
@@ -11,6 +12,13 @@ export type NormalizedEntry = {
   strippedWord: string;
   shouldIgnoreForGuess: boolean;
 };
+
+const reducer = (value: number) => (value + 1) % 1000000;
+
+/**
+ * *Custom* Force Update React Hook, that returns the actual reducer value... Cuz we need that!
+ */
+export const useForceUpdate = () => useReducer(reducer, 0);
 
 /**
  * Picks a random value from the entirety of the input array
@@ -35,6 +43,6 @@ export const toNormalizedEntry = (words: string): NormalizedEntry[] => {
   return words.split(' ').map(word => ({
     word,
     shouldIgnoreForGuess: shouldIgnoreForGuess(word.toLowerCase()),
-    strippedWord: stripPunctuation(word)
+    strippedWord: stripPunctuation(word).toLowerCase()
   }));
 };
