@@ -14,6 +14,7 @@ type ChatManagerProps = {
   addAnswer: (a: IncomingAnswer) => void;
   chooseNewAnswer: () => void;
   chosenBlank?: NormalizedEntry;
+  isAnswered: boolean;
   scores: ScoreMap;
   setIsAnswered: (b: boolean) => void;
   setScores: (sm: ScoreMap) => void;
@@ -23,6 +24,7 @@ export default function ChatManager({
   addAnswer,
   chooseNewAnswer,
   chosenBlank,
+  isAnswered,
   scores,
   setIsAnswered,
   setScores
@@ -35,7 +37,7 @@ export default function ChatManager({
 
   const onMessage = useCallback(
     (e: Event) => {
-      if (!chosenBlank) {
+      if (!chosenBlank || isAnswered) {
         return;
       }
 

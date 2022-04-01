@@ -1,0 +1,95 @@
+.entry-display {
+  position: relative;
+  width: fit-content;
+  padding: 15px;
+  font-size: 0;
+  margin: 30px;
+
+  // Entry Backdrop
+  &:before {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background: $COLOR_BG_BACKDROP;
+    border-radius: 10px;
+    border: 3px solid $COLOR_BORDER_BACKDROP;
+    box-shadow: 0 0 10px $COLOR_BORDER_BACKDROP;
+  }
+
+  .category {
+    position: relative;
+    display: inline-block;
+    padding-left: 10px;
+    margin: 0;
+    margin-bottom: 0.5em;
+    font-size: 2vw;
+    line-height: 2vw;
+    color: $COLOR_TEXT_CATEGORY;
+
+    // Category Animated Slide/Border
+    &:after {
+      content: ' ';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: $COLOR_TEXT_CATEGORY;
+      animation: category-in $ANIM_DUR_CATEGORY forwards;
+    }
+  }
+
+  .entry {
+    font-size: 4vw;
+    line-height: 4vw;
+    margin-left: 12px;
+
+    .word {
+      position: relative;
+      display: inline-block;
+
+      &:not(:last-child) {
+        margin-right: 1vw;
+      }
+
+      &.blanked .letter {
+        opacity: 0;
+      }
+
+      &:not(.blanked) .letter {
+        opacity: 0;
+        position: relative;
+        display: inline-block;
+        animation: letter-in $ANIM_DUR_LETTER forwards;
+      }
+
+      &.chosen {
+        position: relative;
+        border-style: solid;
+        border-color: $COLOR_BORDER_BLANK;
+        border-width: 0;
+        border-bottom-width: 0;
+        animation: chosen-in $ANIM_DUR_HIDDEN forwards;
+        text-shadow: 0 0 8px;
+      }
+    }
+
+    &.is-timeup {
+      .word.chosen {
+        color: $COLOR_TEXT_TIMEUP;
+        border-color: $COLOR_BORDER_TIMEUP;
+      }
+    }
+
+    &.is-answered {
+      .word.chosen {
+        color: $COLOR_TEXT_ANSWERED;
+        border-color: $COLOR_BORDER_ANSWERED;
+      }
+    }
+  }
+}

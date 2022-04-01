@@ -138,7 +138,9 @@ export default function EntryDisplay({
 
   return (
     <section className="entry-display">
-      <h3 className="category">Category: {category}</h3>
+      <h3 className={`category ${category}`} key={category}>
+        Category: {category}
+      </h3>
 
       <section className={className}>{processedEntryDump}</section>
     </section>

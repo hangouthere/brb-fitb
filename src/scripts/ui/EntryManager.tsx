@@ -45,7 +45,7 @@ export default function EntryManager({
   }, [letterDelay, chooseNewAnswer]);
 
   if (!chosenBlank || !letterDelay || !normalizedEntryList) {
-    return <>Selecting Entry, please wait!</>;
+    return <></>;
   }
 
   return (

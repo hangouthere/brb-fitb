@@ -1,0 +1,29 @@
+.answer-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .answer {
+    position: absolute;
+    text-shadow: 0 0 6px, 0 0 12px;
+    animation: answer-in $ANIM_DUR_ANSWER ease forwards;
+
+    &.correct {
+      color: $COLOR_TEXT_PLAYER_CORRECT;
+    }
+
+    &.incorrect {
+      color: $COLOR_TEXT_PLAYER_INCORRECT;
+    }
+  }
+
+  $MAX_NUM_PLAYERS: 100;
+  @for $playerIndex from 1 through $MAX_NUM_PLAYERS {
+    .answer:nth-child(#{$MAX_NUM_PLAYERS}n + #{$playerIndex}) {
+      top: calc(15% + random(75) / 100 * 100%);
+      left: calc(15% + random(75) / 100 * 100%);
+    }
+  }
+}

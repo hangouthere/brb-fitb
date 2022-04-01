@@ -3,7 +3,6 @@ import type { IncomingAnswer } from './ChatManager';
 
 type AnswerManagerProps = {
   answerList: IncomingAnswer[];
-  removeAnswer: (...indices: number[]) => void;
 };
 
 export default function AnswerManager({ answerList }: AnswerManagerProps) {

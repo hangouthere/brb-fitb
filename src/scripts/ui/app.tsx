@@ -76,23 +76,24 @@ export default function App(): ReactElement {
       <div className="page-wrapper">
         <ChatManager
           addAnswer={answerHandlers.append}
+          chooseNewAnswer={chooseNewAnswer}
           chosenBlank={chosenBlank}
+          isAnswered={isAnswered}
           scores={scores}
           setIsAnswered={setIsAnswered}
           setScores={setScores}
-          chooseNewAnswer={chooseNewAnswer}
         />
 
         <EntryManager
+          chooseNewAnswer={forceNewAnswer}
           chosenBlank={chosenBlank}
           isAnswered={isAnswered}
           isTimeUp={isTimeUp}
           letterDelay={letterDelay}
           setChosenBlank={setChosenBlank}
-          chooseNewAnswer={forceNewAnswer}
         />
 
-        <AnswerManager answerList={answers} removeAnswer={answerHandlers.remove} />
+        <AnswerManager answerList={answers} />
 
         {/* Need Score Display */}
         {/* - Running Score of Players */}

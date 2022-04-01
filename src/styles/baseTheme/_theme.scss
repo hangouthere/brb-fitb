@@ -1,0 +1,45 @@
+:root {
+  // Assume stored in ms
+  --delay-letter: 100;
+  // Assume stored in ms
+  --delay-showPlayer: 3000;
+}
+
+$COLOR_TEXT_CATEGORY: rgb(226, 205, 19);
+$COLOR_TEXT_ANSWERED: rgb(175 255 181);
+$COLOR_TEXT_PLAYER_CORRECT: rgb(9, 255, 0);
+$COLOR_TEXT_PLAYER_INCORRECT: rgb(221, 46, 46);
+$COLOR_TEXT_TIMEUP: rgb(255, 179, 179);
+$COLOR_BORDER_BLANK: rgb(0, 217, 255);
+$COLOR_BORDER_ANSWERED: rgb(9, 255, 0);
+$COLOR_BORDER_TIMEUP: rgb(221, 46, 46);
+$COLOR_BG_BACKDROP: rgba(0, 0, 0, 0.8);
+$COLOR_BORDER_BACKDROP: rgba(#ff8a3b, 0.7);
+
+$ANIM_DUR_LETTER: 200ms;
+$ANIM_DUR_HIDDEN: 500ms;
+$ANIM_DUR_ANSWER: 2500ms;
+$ANIM_DUR_CATEGORY: 500ms;
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+#root,
+.page-wrapper {
+  height: 100%;
+  position: relative;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+@import 'answer_list';
+@import 'entry_display';
+@import 'animations';
+@import 'media_queries';
