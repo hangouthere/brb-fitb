@@ -1,8 +1,10 @@
 import { useInterval } from '@mantine/hooks';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, type Dispatch, type SetStateAction } from 'react';
 import { emitter as TwitchService, type ChatMessage } from '../services/twitch';
 import { stripPunctuation, type NormalizedEntry } from '../utils';
 import type { ScoreMap } from './app';
+
+export const SCORE_INCREASE = 10;
 
 export type IncomingAnswer = {
   key: string;
@@ -15,9 +17,8 @@ type ChatManagerProps = {
   chooseNewAnswer: () => void;
   chosenBlank?: NormalizedEntry;
   isAnswered: boolean;
-  scores: ScoreMap;
-  setIsAnswered: (b: boolean) => void;
-  setScores: (sm: ScoreMap) => void;
+  setIsAnswered: Dispatch<SetStateAction<boolean>>;
+  setScores: Dispatch<SetStateAction<ScoreMap>>;
 };
 
 export default function ChatManager({
@@ -25,7 +26,6 @@ export default function ChatManager({
   chooseNewAnswer,
   chosenBlank,
   isAnswered,
-  scores,
   setIsAnswered,
   setScores
 }: ChatManagerProps) {
@@ -41,20 +41,31 @@ export default function ChatManager({
         return;
       }
 
-      const { message, tags } = (e as CustomEvent<ChatMessage>).detail;
+      const {
+        message,
+        tags: { id, username }
+      } = (e as CustomEvent<ChatMessage>).detail;
 
       // prettier-ignore
       const isAnswer = -1 != message.split(' ')
         .findIndex(word => chosenBlank.strippedWord === stripPunctuation(word).toLowerCase());
 
-      addAnswer({ username: tags.username!, isAnswer, key: tags.id! });
+      addAnswer({ username: username!, isAnswer, key: id! });
+
+      if (!username || !id) {
+        return;
+      }
 
       //TODO: Add possible point loss at higher levels
       if (isAnswer) {
         setIsAnswered(true);
 
         //!FIXME: Need to increase score
-        setScores(scores);
+        setScores(scores => {
+          scores[username] = scores[username] || 0;
+          scores[username] += SCORE_INCREASE;
+          return { ...scores };
+        });
 
         start();
       }

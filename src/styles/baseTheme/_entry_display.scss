@@ -29,6 +29,7 @@
     font-size: 2vw;
     line-height: 2vw;
     color: $COLOR_TEXT_CATEGORY;
+    animation: category-in $ANIM_DUR_CATEGORY forwards;
 
     // Category Animated Slide/Border
     &:after {
@@ -39,7 +40,7 @@
       right: 0;
       bottom: 0;
       background: $COLOR_TEXT_CATEGORY;
-      animation: category-in $ANIM_DUR_CATEGORY forwards;
+      animation: category-backdrop-in $ANIM_DUR_CATEGORY forwards;
     }
   }
 
@@ -91,5 +92,37 @@
         border-color: $COLOR_BORDER_ANSWERED;
       }
     }
+  }
+}
+
+.entry-display.Music {
+  $color: rgb(0, 255, 191);
+
+  .category {
+    color: $color;
+
+    &:after {
+      background-color: $color;
+    }
+  }
+
+  .word.chosen {
+    border-color: $color;
+  }
+}
+
+.entry-display.Movies {
+  $color: rgb(0, 140, 255);
+
+  .category {
+    color: $color;
+
+    &:after {
+      background-color: $color;
+    }
+  }
+
+  .word.chosen {
+    border-color: $color;
   }
 }

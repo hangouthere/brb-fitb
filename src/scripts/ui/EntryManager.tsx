@@ -1,5 +1,5 @@
 import categories from '-/categories';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, type Dispatch, type SetStateAction } from 'react';
 import { randomFromArray, toNormalizedEntry, type NormalizedEntry } from '../utils';
 import EntryDisplay from './EntryDisplay';
 
@@ -9,7 +9,7 @@ type EntryManagerProps = {
   isAnswered: boolean;
   isTimeUp: boolean;
   letterDelay: number;
-  setChosenBlank: (b: NormalizedEntry) => void;
+  setChosenBlank: Dispatch<SetStateAction<NormalizedEntry | undefined>> | undefined;
 };
 
 export default function EntryManager({
@@ -25,7 +25,7 @@ export default function EntryManager({
 
   // Rebuild UI on state changes
   useEffect(() => {
-    if (!letterDelay) {
+    if (!letterDelay || !setChosenBlank) {
       return;
     }
 
@@ -40,6 +40,7 @@ export default function EntryManager({
 
     // Set our init state!
     setCategory(randCategory);
+    console.log(chosenBlank);
     setChosenBlank(chosenBlank);
     setNormalizedEntryList(normalizedEntryList);
   }, [letterDelay, chooseNewAnswer]);

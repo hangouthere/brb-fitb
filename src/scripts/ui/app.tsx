@@ -5,6 +5,7 @@ import { useForceUpdate, type NormalizedEntry } from '../utils';
 import AnswerManager from './AnswerManager';
 import ChatManager, { type IncomingAnswer } from './ChatManager';
 import EntryManager from './EntryManager';
+import ScoreBoard from './ScoreBoard';
 
 //! FIXME HACK CRAP GET RID OF IT!
 let u = new URLSearchParams(globalThis.location.search);
@@ -16,6 +17,7 @@ export type ScoreMap = Record<string, number>;
 
 export default function App(): ReactElement {
   const [letterDelay, setLetterDelay] = useState<number>();
+  const [scoreboardNumPlayers, setScoreboardCount] = useState<number>(0);
   const [error, setError] = useState<JSX.Element>();
 
   // Error Display
@@ -50,7 +52,11 @@ export default function App(): ReactElement {
   // Get --delay-letter root css var for animating
   useEffect(() => {
     const letterDelay = Number(getComputedStyle(document.documentElement).getPropertyValue('--delay-letter')) || 0;
+    const scoreboardNumPlayers =
+      Number(getComputedStyle(document.documentElement).getPropertyValue('--display-num-players')) || 1;
+
     setLetterDelay(letterDelay);
+    setScoreboardCount(scoreboardNumPlayers - 1);
   }, []);
 
   const [chosenBlank, setChosenBlank] = useState<NormalizedEntry>();
@@ -79,7 +85,6 @@ export default function App(): ReactElement {
           chooseNewAnswer={chooseNewAnswer}
           chosenBlank={chosenBlank}
           isAnswered={isAnswered}
-          scores={scores}
           setIsAnswered={setIsAnswered}
           setScores={setScores}
         />
@@ -95,8 +100,7 @@ export default function App(): ReactElement {
 
         <AnswerManager answerList={answers} />
 
-        {/* Need Score Display */}
-        {/* - Running Score of Players */}
+        <ScoreBoard scores={scores} scoreboardNumPlayers={scoreboardNumPlayers} />
       </div>
     )
   );

@@ -137,8 +137,8 @@ export default function EntryDisplay({
   className += isTimeUp ? ' is-timeup' : '';
 
   return (
-    <section className="entry-display">
-      <h3 className={`category ${category}`} key={category}>
+    <section className={`entry-display ${category}`}>
+      <h3 className="category" key={category}>
         Category: {category}
       </h3>
 

@@ -80,14 +80,14 @@
 
 @keyframes category-in {
   from {
-    width: 100%;
+    text-shadow: 0 0 30px, 0 0 30px, 0 0 30px, 0 0 30px, 0 0 30px;
   }
   to {
-    width: 4px;
+    text-shadow: 0 0 0px;
   }
 }
 
-@keyframes category-in-BREAKPOINT_1 {
+@keyframes category-backdrop-in {
   from {
     width: 100%;
   }
@@ -96,11 +96,31 @@
   }
 }
 
-@keyframes category-in-BREAKPOINT_2 {
+@keyframes category-backdrop-in-BREAKPOINT_1 {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 4px;
+  }
+}
+
+@keyframes category-backdrop-in-BREAKPOINT_2 {
   from {
     width: 100%;
   }
   to {
     width: 2px;
+  }
+}
+
+@keyframes score-in {
+  from {
+    opacity: 0;
+    left: -100%;
+  }
+
+  to {
+    left: 0%;
   }
 }

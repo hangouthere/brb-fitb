@@ -1,9 +1,4 @@
-:root {
-  // Assume stored in ms
-  --delay-letter: 100;
-  // Assume stored in ms
-  --delay-showPlayer: 3000;
-}
+$SCOREBOARD_NUM_PLAYERS: 11;
 
 $COLOR_TEXT_CATEGORY: rgb(226, 205, 19);
 $COLOR_TEXT_ANSWERED: rgb(175 255 181);
@@ -20,6 +15,12 @@ $ANIM_DUR_LETTER: 200ms;
 $ANIM_DUR_HIDDEN: 500ms;
 $ANIM_DUR_ANSWER: 2500ms;
 $ANIM_DUR_CATEGORY: 500ms;
+
+:root {
+  // Assume stored in ms
+  --delay-letter: 100;
+  --display-num-players: #{$SCOREBOARD_NUM_PLAYERS};
+}
 
 html,
 body {
@@ -39,6 +40,7 @@ body {
   justify-content: flex-end;
 }
 
+@import 'scoreboard';
 @import 'answer_list';
 @import 'entry_display';
 @import 'animations';

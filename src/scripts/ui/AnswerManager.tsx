@@ -1,5 +1,5 @@
 import React from 'react';
-import type { IncomingAnswer } from './ChatManager';
+import { SCORE_INCREASE, type IncomingAnswer } from './ChatManager';
 
 type AnswerManagerProps = {
   answerList: IncomingAnswer[];
@@ -12,6 +12,7 @@ export default function AnswerManager({ answerList }: AnswerManagerProps) {
 
     return (
       <div key={answer.key} className={className}>
+        <span className="score">{SCORE_INCREASE}</span>
         {answer.username}
       </div>
     );

@@ -12,16 +12,32 @@
 
     &.correct {
       color: $COLOR_TEXT_PLAYER_CORRECT;
+
+      .score:before {
+        content: '+';
+      }
     }
 
     &.incorrect {
       color: $COLOR_TEXT_PLAYER_INCORRECT;
+
+      .score {
+        display: none;
+      }
+    }
+
+    .score {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 
   $MAX_NUM_PLAYERS: 100;
   @for $playerIndex from 1 through $MAX_NUM_PLAYERS {
     .answer:nth-child(#{$MAX_NUM_PLAYERS}n + #{$playerIndex}) {
+      margin-top: calc(random(10) / 100 * 100%);
       top: calc(15% + random(75) / 100 * 100%);
       left: calc(15% + random(75) / 100 * 100%);
     }

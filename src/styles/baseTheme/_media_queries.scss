@@ -21,7 +21,7 @@ $BREAKPOINT_2: 350px;
       line-height: 3vw;
 
       &:after {
-        animation: category-in-BREAKPOINT_1 $ANIM_DUR_CATEGORY forwards;
+        animation: category-backdrop-in-BREAKPOINT_1 $ANIM_DUR_CATEGORY forwards;
       }
     }
 
@@ -63,7 +63,7 @@ $BREAKPOINT_2: 350px;
       line-height: 5vw;
 
       &:after {
-        animation: category-in-BREAKPOINT_2 $ANIM_DUR_CATEGORY forwards;
+        animation: category-backdrop-in-BREAKPOINT_2 $ANIM_DUR_CATEGORY forwards;
       }
     }
 
